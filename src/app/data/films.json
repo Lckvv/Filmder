@@ -1,0 +1,30 @@
+[
+  {
+    "id": "1and3011",
+    "imageUrl": "https://fwcdn.pl/fpo/94/59/689459/7752134.3.jpg",
+    "title": "Inferno",
+    "summary": "Amerykański dramat kryminalny z 2016",
+    "rating": "6.2"
+  },
+  {
+    "id": "1asa21",
+    "imageUrl": "https://oldcamera.pl/wp-content/uploads/2019/09/gladiator.jpg",
+    "title": "Gladiator",
+    "summary": "Film kostiumowy produkcji USA z 2000 roku w reżyserii Ridleya Scotta",
+    "rating": "8.1"
+  },
+  {
+    "id": "22pp2",
+    "imageUrl": "https://m.media-amazon.com/images/I/71Q6YhYVSKL.jpg",
+    "title": "The Green Mile",
+    "summary": "Zielona mila (ang. The Green Mile) – amerykański film fabularny z 1999 roku w reżyserii Franka Darabonta",
+    "rating": "8.6"
+  },
+  {
+    "id": "3463sa",
+    "imageUrl": "https://www.swiatksiazki.pl/media/catalog/product/cache/eaf55611dc9c3a2fa4224fad2468d647/9/8/9899906502398-1.jpg",
+    "title": "Oczy diabła",
+    "summary": "Arcydzieło",
+    "rating": "4.0"
+  }
+]

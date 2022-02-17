@@ -1,10 +1,11 @@
 import React from 'react';
+import TemplatePage from "../../templates/TemplatePage";
 
 const IndexPage = () => {
     return (
-        <div>
+        <TemplatePage className={"py-20"}>
             test
-        </div>
+        </TemplatePage>
     );
 };
 

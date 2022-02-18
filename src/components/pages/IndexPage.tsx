@@ -3,12 +3,15 @@ import TemplatePage from "../../templates/TemplatePage";
 import CardAtom from "../atoms/card/Card.atom";
 import {useDispatch, useSelector} from "react-redux";
 import {actionSetFilms} from "../../app/redux/filmsReducer/filmActionTypes";
+import IndexMenu from "../molecules/index/indexMenu/indexMenu";
+import IndexList from "../molecules/index/indexList/indexList";
 
 const IndexPage = () => {
 
     const dispatch = useDispatch();
     // @ts-ignore
     const films = useSelector((state => state.films.films))
+
     const [data, setData] = useState(
         [{
             id: "",
@@ -24,33 +27,47 @@ const IndexPage = () => {
         const fetchData = async () => {
             const result = (await require('../../app/data/films.json'));
 
-            setData(result)
+            if (films.length > 0) {
+                films.map((item: { id: any; }) => {
+                    console.log(item.id)
+                    setData(result.filter((results: { id: string; }) => !item.id.includes(results.id)))
+                })
+            } else
+                setData(result)
         }
 
         fetchData();
     }, []);
 
-    const handleChange = (id: string, isLike: boolean) => () => {
-        dispatch(actionSetFilms(id, isLike))
+    const handleChange = (id: string, imageUrl: string, title: string, summary: string, rating: string, isLike: boolean) => () => {
+        dispatch(actionSetFilms(id, imageUrl, title, summary, rating, isLike))
+        films.map((item: { id: any; }) => {
+            setData(data.filter((results: { id: string; }) => !item.id.includes(results.id)))
+        })
+
+        const requestOptions = {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({id: id, imageUrl: imageUrl, title: title, summary: summary, rating: rating, isLike: isLike})
+        };
     }
+
+    useEffect(() => {
+        console.log("test")
+    }, [localStorage])
 
     return (
         <TemplatePage className={"py-20 "}>
-            <div className={"flex flex-col items-center"}>
-                {data !== undefined &&
-                <CardAtom key={data[0].id} imageUrl={data[0].imageUrl} title={data[0].title}
-                          summary={data[0].summary} rating={data[0].rating}/>
-                }
-                <div className={"w-full flex justify-between"}>
-                    <button className={"w-[100px] bg-blue-700 hover:bg-blue-900 text-white font-bold py-2 px-4 rounded-full"} onClick={handleChange(data[0].id, false)}>
-                        Reject
-                    </button>
-
-                    <button className={"w-[100px] bg-blue-700 hover:bg-blue-900 text-white font-bold py-2 px-4 rounded-full"} onClick={handleChange(data[0].id, true)}>
-                        Accept
-                    </button>
+            {data.length > 0 ?
+                <IndexMenu data={data} handleChange={handleChange}/>
+                :
+                <div className={"w-full py-20"}>
+                    <h2 className={"text-center"}>Przykro nam, nie mamy więcej filmów do ocenienia</h2>
                 </div>
-            </div>
+            }
+
+            <IndexList films={films}/>
+
         </TemplatePage>
     );
 };

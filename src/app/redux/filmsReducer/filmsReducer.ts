@@ -10,7 +10,6 @@ const initialState = {
 const reducer = (state = initialState, { type, payload }) => {
     switch (type) {
         case TYPE_FILMS: {
-            console.log(state)
             const id = state.films.findIndex((films: { id: any }) => films.id === payload.id)
 
             if (id === -1) {

@@ -5,7 +5,7 @@ import Logo from "../../molecules/logo/Logo";
 const Footer = () => {
     return (
         <footer className={"relative w-full p-20 border-t-4 border-blue-900"}>
-            <Link to={"/"}>
+            <Link to={"/Filmder"}>
                 <Logo/>
             </Link>
         </footer>

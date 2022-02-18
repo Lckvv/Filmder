@@ -1,4 +1,5 @@
-import React, {FC} from 'react';
+import React, {FC, useState} from 'react';
+import Draggable from "react-draggable";
 import CardAtom from "../../../atoms/card/Card.atom";
 
 type Props = {
@@ -11,18 +12,20 @@ type Props = {
             rating: string
         }[],
     handleChange: (id: string, imageUrl: string, title: string, summary: string, rating: string, isLike: boolean) => any;
+    handleDrag: any;
+    position: any;
 }
 
-const IndexMenu: FC<Props> = ({data, handleChange}) => {
+
+const IndexMenu: FC<Props> = ({data, handleChange, handleDrag, position}) => {
     return (
         <div className={"flex flex-col items-center h-30 space-y-10"}>
             {data !== undefined
             &&
             data.length > 0
             &&
-            <CardAtom key={data[0].id} imageUrl={data[0].imageUrl} title={data[0].title} summary={data[0].summary}
-                      rating={data[0].rating} wrapClassName={"laptop:h-[730px] tablet:h-[420px]"}/>
-
+                <CardAtom key={data[0].id} imageUrl={data[0].imageUrl} title={data[0].title} summary={data[0].summary}
+                          rating={data[0].rating} wrapClassName={"laptop:h-[730px] tablet:h-[420px]"} position={position} handleDrag={handleDrag}/>
             }
             {data.length > 0 &&
             <div className={"w-full flex justify-between px-100"}>

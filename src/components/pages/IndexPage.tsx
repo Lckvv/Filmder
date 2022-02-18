@@ -10,6 +10,7 @@ const IndexPage = () => {
     const dispatch = useDispatch();
     // @ts-ignore
     const films = useSelector((state => state.films.films))
+    const [position, setPosition] = useState({x: 0, y: 0})
 
     const [data, setData] = useState(
         [{
@@ -50,10 +51,31 @@ const IndexPage = () => {
         };
     }
 
+    useEffect(() => {
+        if (position.x < -100){
+            dispatch(actionSetFilms(data[0].id, data[0].imageUrl, data[0].title, data[0].summary, data[0].rating, false))
+            films.map((item: { id: any; }) => {
+                setData(data.filter((results: { id: string; }) => !item.id.includes(results.id)))
+            })
+            setPosition({x: 0, y: 0})
+        } else if (position.x > 100) {
+            dispatch(actionSetFilms(data[0].id, data[0].imageUrl, data[0].title, data[0].summary, data[0].rating, true))
+            films.map((item: { id: any; }) => {
+                setData(data.filter((results: { id: string; }) => !item.id.includes(results.id)))
+            })
+            setPosition({x: 0, y: 0})
+        }
+    }, [position])
+
+    const handleDrag = (e: any, data: any) => {
+        setPosition({x: data.x, y: data.y})
+        console.log(position)
+    };
+
     return (
         <TemplatePage className={"py-5 "}>
             {data.length > 0 ?
-                <IndexMenu data={data} handleChange={handleChange}/>
+                <IndexMenu data={data} handleChange={handleChange} handleDrag={handleDrag} position={position}/>
                 :
                 <div className={"flex w-full py-20 laptop:h-[730px] items-center justify-center"}>
                     <h2 className={"text-center"}>Przykro nam, nie mamy więcej filmów do ocenienia</h2>

@@ -69,7 +69,6 @@ const IndexPage = () => {
 
     const handleDrag = (e: any, data: any) => {
         setPosition({x: data.x, y: data.y})
-        console.log(position)
     };
 
     return (

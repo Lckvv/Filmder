@@ -12,8 +12,8 @@ type Props = {
     handleDrag?: any
 }
 
-const CardAtom: FC<Props> = ({imageUrl, title, summary, rating, className, wrapClassName, position, handleDrag}) => {
 
+const CardAtom: FC<Props> = ({imageUrl, title, summary, rating, className, wrapClassName, position, handleDrag}) => {
     const nodeRef = React.useRef(null);
     return (
         <div className={`flex flex-col max-w-md space-y-4 items-center ${wrapClassName}`}>
@@ -22,9 +22,13 @@ const CardAtom: FC<Props> = ({imageUrl, title, summary, rating, className, wrapC
                 <h3>({rating}/10)</h3>
             </div>
             <p className={"text-center "}>{summary}</p>
-            <Draggable nodeRef={nodeRef} onDrag={handleDrag} position={position} axis="x">
-                <img src={imageUrl} alt={title} className={className} ref={nodeRef}/>
-            </Draggable>
+            {innerWidth < 900 ?
+                <Draggable nodeRef={nodeRef} onDrag={handleDrag} position={position} axis="x">
+                    <img src={imageUrl} alt={title} className={className} ref={nodeRef}/>
+                </Draggable>
+                :
+                <img src={imageUrl} alt={title} className={className}/>
+            }
         </div>
     );
 };

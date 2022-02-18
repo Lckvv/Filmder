@@ -2,7 +2,7 @@ import React from 'react';
 
 const Logo = () => {
     return (
-        <h1 className={"text-xl"}>Filmder</h1>
+        <h1 className={"text-xl tablet:text-center laptop:text-left"}>Filmder</h1>
     );
 };
 

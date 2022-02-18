@@ -15,17 +15,17 @@ type Props = {
 
 const IndexMenu: FC<Props> = ({data, handleChange}) => {
     return (
-        <div className={"flex flex-col items-center"}>
+        <div className={"flex flex-col items-center h-30 space-y-10"}>
             {data !== undefined
             &&
             data.length > 0
             &&
             <CardAtom key={data[0].id} imageUrl={data[0].imageUrl} title={data[0].title} summary={data[0].summary}
-                      rating={data[0].rating}/>
+                      rating={data[0].rating} wrapClassName={"laptop:h-[730px] tablet:h-[420px]"}/>
 
             }
             {data.length > 0 &&
-            <div className={"w-full flex justify-between"}>
+            <div className={"w-full flex justify-between px-100"}>
                 <button
                     className={"w-[100px] bg-red-700 hover:bg-red-900 text-white font-bold py-2 px-4 rounded-full"}
                     onClick={handleChange(data[0].id, data[0].imageUrl, data[0].title, data[0].summary, data[0].rating, false)}>

@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import TemplatePage from "../../templates/TemplatePage";
-import CardAtom from "../atoms/card/Card.atom";
 import {useDispatch, useSelector} from "react-redux";
 import {actionSetFilms} from "../../app/redux/filmsReducer/filmActionTypes";
 import IndexMenu from "../molecules/index/indexMenu/indexMenu";
@@ -29,7 +28,6 @@ const IndexPage = () => {
 
             if (films.length > 0) {
                 films.map((item: { id: any; }) => {
-                    console.log(item.id)
                     setData(result.filter((results: { id: string; }) => !item.id.includes(results.id)))
                 })
             } else
@@ -52,16 +50,12 @@ const IndexPage = () => {
         };
     }
 
-    useEffect(() => {
-        console.log("test")
-    }, [localStorage])
-
     return (
-        <TemplatePage className={"py-20 "}>
+        <TemplatePage className={"py-5 "}>
             {data.length > 0 ?
                 <IndexMenu data={data} handleChange={handleChange}/>
                 :
-                <div className={"w-full py-20"}>
+                <div className={"flex w-full py-20 laptop:h-[730px] items-center justify-center"}>
                     <h2 className={"text-center"}>Przykro nam, nie mamy więcej filmów do ocenienia</h2>
                 </div>
             }

@@ -6,7 +6,7 @@ function App() {
   return (
       <BrowserRouter>
         <Routes>
-          <Route path="/filmder" element={<IndexPage/>}/>
+          <Route path="/Filmder" element={<IndexPage/>}/>
         </Routes>
       </BrowserRouter>
 

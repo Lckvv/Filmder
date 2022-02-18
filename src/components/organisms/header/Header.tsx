@@ -5,7 +5,7 @@ import Logo from "../../molecules/logo/Logo";
 const Header = () => {
     return (
         <header className={"relative w-full py-4 px-20 border-b-4 border-blue-900"}>
-            <Link to={"/"}>
+            <Link to={"/Filmder"}>
                 <Logo/>
             </Link>
         </header>

@@ -9,7 +9,7 @@ type Props = {
         rating: string;
         isLike: boolean;
 
-    }[]
+    }[],
 }
 
 const IndexList: FC<Props> = ({films}) => {

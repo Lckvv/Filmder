@@ -6,7 +6,6 @@ import IndexMenu from "../molecules/index/indexMenu/indexMenu";
 import IndexList from "../molecules/index/indexList/indexList";
 
 const IndexPage = () => {
-
     const dispatch = useDispatch();
     // @ts-ignore
     const films = useSelector((state => state.films.films))
@@ -68,13 +67,13 @@ const IndexPage = () => {
     }, [position])
 
     const handleDrag = (e: any, data: any) => {
-        setPosition({x: data.x, y: data.y})
+        setPosition({x: data.x, y: 0})
     };
 
     return (
         <TemplatePage className={"py-5 "}>
             {data.length > 0 ?
-                <IndexMenu data={data} handleChange={handleChange} handleDrag={handleDrag} position={position}/>
+                <IndexMenu data={data} handleChange={handleChange} handleDrag={handleDrag} position={position} isDragImage={true}/>
                 :
                 <div className={"flex w-full py-20 laptop:h-[730px] items-center justify-center"}>
                     <h2 className={"text-center"}>Przykro nam, nie mamy więcej filmów do ocenienia</h2>

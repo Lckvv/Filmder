@@ -9,11 +9,12 @@ type Props = {
     className?: string,
     wrapClassName?: string,
     position?: any,
-    handleDrag?: any
+    handleDrag?: any,
+    isDragImage?: boolean
 }
 
 
-const CardAtom: FC<Props> = ({imageUrl, title, summary, rating, className, wrapClassName, position, handleDrag}) => {
+const CardAtom: FC<Props> = ({imageUrl, title, summary, rating, className, wrapClassName, position, handleDrag, isDragImage = false}) => {
     const nodeRef = React.useRef(null);
     return (
         <div className={`flex flex-col max-w-md space-y-4 items-center ${wrapClassName}`}>
@@ -22,7 +23,7 @@ const CardAtom: FC<Props> = ({imageUrl, title, summary, rating, className, wrapC
                 <h3>({rating}/10)</h3>
             </div>
             <p className={"text-center "}>{summary}</p>
-            {innerWidth < 900 ?
+            {innerWidth < 900 && isDragImage === true ?
                 <Draggable nodeRef={nodeRef} onDrag={handleDrag} position={position} axis="x">
                     <img src={imageUrl} alt={title} className={className} ref={nodeRef}/>
                 </Draggable>

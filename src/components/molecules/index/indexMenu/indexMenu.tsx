@@ -14,10 +14,11 @@ type Props = {
     handleChange: (id: string, imageUrl: string, title: string, summary: string, rating: string, isLike: boolean) => any;
     handleDrag: any;
     position: any;
+    isDragImage?: boolean;
 }
 
 
-const IndexMenu: FC<Props> = ({data, handleChange, handleDrag, position}) => {
+const IndexMenu: FC<Props> = ({data, handleChange, handleDrag, position, isDragImage}) => {
     return (
         <div className={"flex flex-col items-center h-30 space-y-10"}>
             {data !== undefined
@@ -26,7 +27,7 @@ const IndexMenu: FC<Props> = ({data, handleChange, handleDrag, position}) => {
             &&
             <CardAtom key={data[0].id} imageUrl={data[0].imageUrl} title={data[0].title} summary={data[0].summary}
                       rating={data[0].rating} wrapClassName={"laptop:h-[730px] tablet:h-[420px]"} position={position}
-                      handleDrag={handleDrag}/>
+                      handleDrag={handleDrag} isDragImage={isDragImage}/>
             }
             {data.length > 0 &&
             innerWidth > 900 ?
